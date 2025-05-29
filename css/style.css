@@ -1249,84 +1249,67 @@ nav a:hover::after {
         gap: 25px;
     }
 }
-/* Add this at the end of your style.css file */
-
 /* ======================
-   Responsive Design
+   Mobile Responsive Fixes
    ====================== */
-@media (max-width: 1200px) {
-    .container {
-        padding: 0 30px;
-    }
-    
-    .vision-mission .container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    .story-content, 
-    .section-content,
-    .contact-container {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-    
-    .story-image,
-    .section-image {
-        order: -1;
-        margin-bottom: 2rem;
-    }
-}
 
-@media (max-width: 992px) {
+/* General Mobile Styles */
+@media (max-width: 767px) {
+    /* Base adjustments */
+    body {
+        font-size: 14px;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    /* Typography */
     h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
+        line-height: 1.3;
     }
     
     h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
     }
     
     h3 {
         font-size: 1.5rem;
     }
     
-    .hero-content h1 {
-        font-size: 3rem;
+    /* Header */
+    header {
+        padding: 10px 0;
     }
     
-    .services-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
-}
-
-@media (max-width: 768px) {
-    /* Header and Navigation */
-    header {
-        padding: 0.5rem 0;
+    .logo {
+        margin-left: 0;
+        gap: 10px;
     }
     
     .logo img {
-        width: 150px;
-        height: 100px;
+        width: 120px;
+        height: 80px;
     }
     
     .logo h1 {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
     
+    /* Mobile Menu */
     nav ul {
         display: none;
-        position: fixed;
-        top: 80px;
+        position: absolute;
+        top: 100%;
         left: 0;
         width: 100%;
         background: #f5f5f5;
         flex-direction: column;
-        gap: 0;
-        padding: 1rem 0;
+        padding: 15px 0;
         box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-        z-index: 999;
+        z-index: 1000;
     }
     
     nav ul.show {
@@ -1340,162 +1323,88 @@ nav a:hover::after {
     
     nav ul li a {
         display: block;
-        padding: 1rem;
+        padding: 12px 15px;
     }
     
     .mobile-menu {
         display: block;
+        font-size: 1.5rem;
+        margin-right: 15px;
     }
     
     /* Hero Section */
+    .hero {
+        height: 80vh;
+    }
+    
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
     
     .hero-content p {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
     
-    /* General Sections */
+    /* Sections */
+    .vision-mission .container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
     .vision, .mission {
-        padding: 2rem;
+        padding: 20px;
     }
     
-    .value-card, 
-    .team-member,
-    .service-card,
-    .job {
-        padding: 1.5rem;
+    .story-content,
+    .section-content,
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .story-image,
+    .section-image {
+        margin-bottom: 20px;
+    }
+    
+    /* Services */
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Team */
+    .team-grid {
+        grid-template-columns: 1fr;
     }
     
     /* Testimonials */
     .testimonial {
-        padding: 2rem 1.5rem;
-    }
-    
-    .testimonial p {
-        font-size: 1.1rem;
+        padding: 20px 15px;
     }
     
     /* Contact Form */
     .contact-form {
-        padding: 2rem;
+        padding: 20px;
     }
     
     /* Footer */
     .footer-content {
         grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    .footer-section {
-        margin-bottom: 1.5rem;
+        gap: 20px;
     }
 }
 
-@media (max-width: 576px) {
-    /* Typography */
-    h1 {
-        font-size: 2rem;
-    }
-    
-    h2 {
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+    .hero-content h1 {
         font-size: 1.8rem;
     }
     
-    /* Hero Section */
-    .hero-content h1 {
-        font-size: 2rem;
-        line-height: 1.3;
-    }
-    
-    .hero-content .btn {
-        padding: 12px 25px;
-        font-size: 1rem;
-    }
-    
-    /* Buttons */
     .btn {
-        padding: 12px 25px;
+        padding: 12px 20px;
         font-size: 0.9rem;
     }
     
-    .btn-small {
-        padding: 8px 15px;
-        font-size: 0.8rem;
-    }
-    
-    /* General Sections */
     .section-description {
-        font-size: 1rem;
-        margin-bottom: 2rem;
+        font-size: 0.95rem;
     }
-    
-    .vision, .mission {
-        padding: 1.5rem;
-    }
-    
-    /* Team Section */
-    .member-info {
-        padding: 1.5rem;
-    }
-    
-    /* Contact Form */
-    .form-group input,
-    .form-group textarea {
-        padding: 12px 15px;
-    }
-    
-    /* Social Links */
-    .social-links a {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
-    }
-}
-
-@media (max-width: 400px) {
-    /* Hero Section */
-    .hero-content h1 {
-        font-size: 1.8rem;
-    }
-    
-    /* Services Grid */
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    /* Job Openings */
-    .job-openings {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Animation Keyframes for Mobile Menu */
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideOutLeft {
-    from {
-        opacity: 1;
-        transform: translateX(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-}
-
-/* Prevent horizontal scrolling */
-html, body {
-    max-width: 100%;
-    overflow-x: hidden;
 }
