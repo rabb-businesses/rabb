@@ -1669,3 +1669,25 @@ document.head.appendChild(styleSheet);
  * 
  * Built with ❤️ for modern web standards
  */
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    
+    // Toggle main navigation
+    mobileToggle.addEventListener('click', function() {
+        mainNav.classList.toggle('active');
+    });
+    
+    // Handle dropdown menus on mobile
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            if (window.innerWidth <= 992) { // Only for mobile
+                e.preventDefault();
+                const dropdown = this.nextElementSibling;
+                dropdown.classList.toggle('active');
+            }
+        });
+    });
+});
