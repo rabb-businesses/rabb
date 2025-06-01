@@ -1,73 +1,98 @@
 /**
  * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- * 🏢 RABB BUSINESSES - MODERN JAVASCRIPT SUITE
+ * 🌟 RABB BUSINESSES - PREMIUM ANIMATED JAVASCRIPT SUITE
  * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  * 
- * A modern, performant, and beautifully structured JavaScript application
- * for the Rabb Businesses website with enhanced user experience.
+ * A cutting-edge, performance-optimized JavaScript application with
+ * breathtaking animations and premium user experience.
  * 
- * @author Rabb Businesses Development Team
- * @version 2.0.0
+ * @author Rabb Businesses Elite Development Team
+ * @version 3.0.0
  * @license MIT
  */
 
-class RabbBusinessesApp {
+class RabbBusinessesAnimatedApp {
   constructor() {
     this.state = {
       currentSlide: 0,
       currentTestimonial: 0,
       isChatOpen: false,
       isLoading: false,
-      animations: new Set(),
-      observers: new Map()
+      animations: new Map(),
+      observers: new Map(),
+      particles: [],
+      scrollVelocity: 0,
+      lastScrollY: 0,
+      mousePosition: { x: 0, y: 0 },
+      isVisible: true
     };
 
     this.config = {
-      slideInterval: 5000,
-      testimonialInterval: 7000,
-      scrollThreshold: 100,
-      animationDelay: 100,
-      notificationDuration: 5000
+      slideInterval: 6000,
+      testimonialInterval: 8000,
+      scrollThreshold: 80,
+      animationDuration: 800,
+      particleCount: 50,
+      easing: {
+        elastic: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+        smooth: 'cubic-bezier(0.4, 0, 0.2, 1)',
+        bounce: 'cubic-bezier(0.68, -0.6, 0.32, 1.6)',
+        power: 'cubic-bezier(0.77, 0, 0.175, 1)'
+      }
     };
 
     this.selectors = {
       header: 'header',
       navigation: 'nav a[href^="#"]',
-      mobileMenuBtn: '.mobile-menu',
-      mobileNav: 'nav ul',
+      mobileMenuBtn: '.mobile-menu-toggle',
+      mobileNav: '.mobile-nav',
       heroSlides: '.hero-slide',
-      testimonials: '.testimonial',
+      testimonials: '.testimonial-card',
       faqItems: '.faq-item',
-      contactForm: '#businessContactForm',
+      contactForm: '#contact-form',
       newsletterForm: '.newsletter-form',
       whatsappWidget: '.whatsapp-widget',
-      chatWindow: '#chatWindow',
-      animatedElements: '.service-card, .value-card, .team-member, .blog-post, .job'
+      chatWindow: '.chat-window',
+      animatedElements: '.animate-on-scroll',
+      particleContainer: '.particle-container'
     };
 
-    this.intervals = new Map();
+    this.animations = {
+      fadeInUp: { opacity: [0, 1], transform: ['translateY(60px)', 'translateY(0)'] },
+      fadeInLeft: { opacity: [0, 1], transform: ['translateX(-60px)', 'translateX(0)'] },
+      fadeInRight: { opacity: [0, 1], transform: ['translateX(60px)', 'translateX(0)'] },
+      scaleIn: { opacity: [0, 1], transform: ['scale(0.8)', 'scale(1)'] },
+      slideInUp: { transform: ['translateY(100%)', 'translateY(0)'] },
+      rotateIn: { opacity: [0, 1], transform: ['rotate(-180deg) scale(0)', 'rotate(0deg) scale(1)'] },
+      bounceIn: { opacity: [0, 1], transform: ['scale(0.3)', 'scale(1.1)', 'scale(1)'] }
+    };
+
     this.init();
   }
 
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // 🚀 INITIALIZATION
+  // 🚀 ADVANCED INITIALIZATION SYSTEM
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   async init() {
     try {
       await this.waitForDOM();
-      this.setupErrorHandling();
-      this.initializeComponents();
-      this.setupPerformanceOptimizations();
-      this.registerServiceWorker();
       
-      console.log('🎯 Rabb Businesses initialized successfully!');
+      // Initialize in sequence for smooth loading
+      await this.initializeCore();
+      await this.initializeAnimations();
+      await this.initializeComponents();
+      await this.initializeEffects();
+      
+      this.startHeartbeat();
+      this.logInitialization();
+      
     } catch (error) {
       this.handleError('Initialization failed', error);
     }
   }
 
-  waitForDOM() {
+  async waitForDOM() {
     return new Promise(resolve => {
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', resolve);
@@ -77,7 +102,23 @@ class RabbBusinessesApp {
     });
   }
 
-  initializeComponents() {
+  async initializeCore() {
+    this.setupErrorHandling();
+    this.setupPerformanceMonitoring();
+    this.injectCriticalStyles();
+    this.setupGlobalEventListeners();
+    await this.delay(50); // Prevent overwhelming
+  }
+
+  async initializeAnimations() {
+    this.initParticleSystem();
+    this.initScrollAnimations();
+    this.initHoverEffects();
+    this.initLoadingAnimations();
+    await this.delay(50);
+  }
+
+  async initializeComponents() {
     const components = [
       this.initNavigation,
       this.initMobileMenu,
@@ -85,37 +126,231 @@ class RabbBusinessesApp {
       this.initTestimonialSlider,
       this.initFAQAccordion,
       this.initContactForm,
-      this.initNewsletterForm,
-      this.initWhatsAppWidget,
-      this.initScrollEffects,
-      this.initLazyLoading,
-      this.initBackToTop
+      this.initWhatsAppWidget
     ];
 
-    components.forEach(component => {
+    for (const component of components) {
       try {
-        component.call(this);
+        await component.call(this);
+        await this.delay(30);
       } catch (error) {
-        this.handleError(`Component initialization failed: ${component.name}`, error);
+        this.handleError(`Component failed: ${component.name}`, error);
       }
+    }
+  }
+
+  async initializeEffects() {
+    this.initParallaxEffects();
+    this.initMagneticElements();
+    this.initTextAnimations();
+    this.initBackgroundEffects();
+    await this.delay(50);
+  }
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // 🎨 ADVANCED ANIMATION SYSTEM
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  initScrollAnimations() {
+    const options = {
+      threshold: [0, 0.25, 0.5, 0.75, 1],
+      rootMargin: '-50px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => this.handleScrollAnimation(entry));
+    }, options);
+
+    document.querySelectorAll(this.selectors.animatedElements).forEach(el => {
+      observer.observe(el);
+      this.prepareElementForAnimation(el);
+    });
+
+    this.observers.set('scroll', observer);
+  }
+
+  prepareElementForAnimation(element) {
+    const animationType = element.dataset.animation || 'fadeInUp';
+    const delay = element.dataset.delay || '0';
+    
+    element.style.cssText += `
+      opacity: 0;
+      transform: ${this.getInitialTransform(animationType)};
+      transition: all ${this.config.animationDuration}ms ${this.config.easing.elastic} ${delay}ms;
+    `;
+  }
+
+  getInitialTransform(animationType) {
+    const transforms = {
+      fadeInUp: 'translateY(60px)',
+      fadeInDown: 'translateY(-60px)',
+      fadeInLeft: 'translateX(-60px)',
+      fadeInRight: 'translateX(60px)',
+      scaleIn: 'scale(0.8)',
+      rotateIn: 'rotate(-180deg) scale(0)',
+      slideInUp: 'translateY(100%)'
+    };
+    return transforms[animationType] || 'translateY(60px)';
+  }
+
+  handleScrollAnimation(entry) {
+    if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+      const element = entry.target;
+      const animationType = element.dataset.animation || 'fadeInUp';
+      
+      this.animateElement(element, animationType);
+      this.observers.get('scroll').unobserve(element);
+    }
+  }
+
+  animateElement(element, animationType) {
+    const animations = {
+      fadeInUp: () => {
+        element.style.opacity = '1';
+        element.style.transform = 'translateY(0)';
+      },
+      fadeInLeft: () => {
+        element.style.opacity = '1';
+        element.style.transform = 'translateX(0)';
+      },
+      fadeInRight: () => {
+        element.style.opacity = '1';
+        element.style.transform = 'translateX(0)';
+      },
+      scaleIn: () => {
+        element.style.opacity = '1';
+        element.style.transform = 'scale(1)';
+      },
+      rotateIn: () => {
+        element.style.opacity = '1';
+        element.style.transform = 'rotate(0deg) scale(1)';
+      },
+      bounceIn: () => {
+        element.style.opacity = '1';
+        element.style.transform = 'scale(1)';
+        element.style.animation = 'bounceIn 0.8s ease-out';
+      }
+    };
+
+    if (animations[animationType]) {
+      animations[animationType]();
+      element.classList.add('animated', animationType);
+    }
+  }
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // ✨ PARTICLE SYSTEM
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  initParticleSystem() {
+    this.createParticleContainer();
+    this.generateParticles();
+    this.startParticleAnimation();
+  }
+
+  createParticleContainer() {
+    if (document.querySelector('.particle-system')) return;
+
+    const container = document.createElement('div');
+    container.className = 'particle-system';
+    container.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    `;
+    
+    document.body.appendChild(container);
+    this.particleContainer = container;
+  }
+
+  generateParticles() {
+    for (let i = 0; i < this.config.particleCount; i++) {
+      const particle = this.createParticle();
+      this.state.particles.push(particle);
+      this.particleContainer.appendChild(particle.element);
+    }
+  }
+
+  createParticle() {
+    const element = document.createElement('div');
+    const size = Math.random() * 4 + 1;
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight;
+    const vx = (Math.random() - 0.5) * 0.5;
+    const vy = (Math.random() - 0.5) * 0.5;
+    const opacity = Math.random() * 0.5 + 0.1;
+
+    element.style.cssText = `
+      position: absolute;
+      width: ${size}px;
+      height: ${size}px;
+      background: radial-gradient(circle, rgba(37, 211, 102, ${opacity}) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      will-change: transform;
+    `;
+
+    return { element, x, y, vx, vy, size, opacity };
+  }
+
+  startParticleAnimation() {
+    const animate = () => {
+      this.updateParticles();
+      this.animationFrame = requestAnimationFrame(animate);
+    };
+    animate();
+  }
+
+  updateParticles() {
+    this.state.particles.forEach(particle => {
+      // Update position
+      particle.x += particle.vx;
+      particle.y += particle.vy;
+
+      // Bounce off edges
+      if (particle.x <= 0 || particle.x >= window.innerWidth) {
+        particle.vx *= -1;
+      }
+      if (particle.y <= 0 || particle.y >= window.innerHeight) {
+        particle.vy *= -1;
+      }
+
+      // Mouse interaction
+      const dx = this.state.mousePosition.x - particle.x;
+      const dy = this.state.mousePosition.y - particle.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < 100) {
+        const force = (100 - distance) / 100;
+        particle.x -= (dx / distance) * force * 0.5;
+        particle.y -= (dy / distance) * force * 0.5;
+      }
+
+      // Apply transform
+      particle.element.style.transform = `translate3d(${particle.x}px, ${particle.y}px, 0)`;
     });
   }
 
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // 🧭 NAVIGATION SYSTEM
+  // 🧭 ENHANCED NAVIGATION SYSTEM
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  initNavigation() {
+  async initNavigation() {
     this.setupSmoothScrolling();
     this.setupHeaderEffects();
     this.setupActiveNavHighlighting();
+    this.setupNavigationAnimations();
   }
 
   setupSmoothScrolling() {
-    const navLinks = document.querySelectorAll(this.selectors.navigation);
-    
-    navLinks.forEach(link => {
+    document.querySelectorAll(this.selectors.navigation).forEach(link => {
       link.addEventListener('click', this.handleSmoothScroll.bind(this));
+      this.addHoverEffect(link);
     });
   }
 
@@ -127,96 +362,123 @@ class RabbBusinessesApp {
     
     if (!targetElement) return;
 
+    // Add ripple effect to clicked link
+    this.createRippleEffect(event.target, event);
+
     const header = document.querySelector(this.selectors.header);
     const headerHeight = header?.offsetHeight || 0;
     const targetPosition = targetElement.getBoundingClientRect().top + 
                           window.pageYOffset - headerHeight;
 
-    this.smoothScrollTo(targetPosition);
+    this.smoothScrollTo(targetPosition, 1200);
   }
 
-  smoothScrollTo(position) {
+  smoothScrollTo(targetPosition, duration = 800) {
     const startPosition = window.pageYOffset;
-    const distance = position - startPosition;
-    const duration = 800;
+    const distance = targetPosition - startPosition;
     let start = null;
 
-    const step = (timestamp) => {
+    const easeInOutQuart = t => t < 0.5 ? 8 * t * t * t * t : 1 - 8 * (--t) * t * t * t;
+
+    const animation = timestamp => {
       if (!start) start = timestamp;
       const progress = timestamp - start;
       const progressPercentage = Math.min(progress / duration, 1);
       
-      // Easing function for smooth animation
-      const easeInOutCubic = progressPercentage < 0.5 
-        ? 4 * progressPercentage * progressPercentage * progressPercentage
-        : (progressPercentage - 1) * (2 * progressPercentage - 2) * (2 * progressPercentage - 2) + 1;
-
-      window.scrollTo(0, startPosition + distance * easeInOutCubic);
+      const easedProgress = easeInOutQuart(progressPercentage);
+      window.scrollTo(0, startPosition + distance * easedProgress);
 
       if (progress < duration) {
-        requestAnimationFrame(step);
+        requestAnimationFrame(animation);
       }
     };
 
-    requestAnimationFrame(step);
+    requestAnimationFrame(animation);
   }
 
   setupHeaderEffects() {
     const header = document.querySelector(this.selectors.header);
     if (!header) return;
 
-    const scrollHandler = this.throttle(() => {
-      header.classList.toggle('scrolled', window.scrollY > this.config.scrollThreshold);
-    }, 16);
+    let lastScrollY = window.pageYOffset;
+    let ticking = false;
+
+    const updateHeader = () => {
+      const scrollY = window.pageYOffset;
+      const scrollDirection = scrollY > lastScrollY ? 'down' : 'up';
+      
+      // Calculate scroll velocity
+      this.state.scrollVelocity = Math.abs(scrollY - lastScrollY);
+      
+      // Header visibility and styling
+      if (scrollY > this.config.scrollThreshold) {
+        header.classList.add('scrolled');
+        header.style.transform = scrollDirection === 'down' && scrollY > 200 
+          ? 'translateY(-100%)' 
+          : 'translateY(0)';
+      } else {
+        header.classList.remove('scrolled');
+        header.style.transform = 'translateY(0)';
+      }
+
+      // Blur effect based on scroll velocity
+      const blurAmount = Math.min(this.state.scrollVelocity * 0.1, 3);
+      header.style.backdropFilter = `blur(${blurAmount}px)`;
+
+      lastScrollY = scrollY;
+      ticking = false;
+    };
+
+    const scrollHandler = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateHeader);
+        ticking = true;
+      }
+    };
 
     window.addEventListener('scroll', scrollHandler, { passive: true });
   }
 
-  setupActiveNavHighlighting() {
-    const highlightHandler = this.throttle(this.highlightActiveNavItem.bind(this), 16);
-    window.addEventListener('scroll', highlightHandler, { passive: true });
-  }
-
-  highlightActiveNavItem() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll(this.selectors.navigation);
-    const scrollPosition = window.pageYOffset + 200;
-
-    let currentSection = '';
-
-    sections.forEach(section => {
-      const { top, height } = section.getBoundingClientRect();
-      const sectionTop = top + window.pageYOffset;
-      
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + height) {
-        currentSection = section.id;
-      }
-    });
-
-    navLinks.forEach(link => {
-      const isActive = link.getAttribute('href') === `#${currentSection}`;
-      link.classList.toggle('active', isActive);
-    });
-  }
-
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // 📱 MOBILE MENU
+  // 📱 ADVANCED MOBILE MENU
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  initMobileMenu() {
+  async initMobileMenu() {
     const menuBtn = document.querySelector(this.selectors.mobileMenuBtn);
     const nav = document.querySelector(this.selectors.mobileNav);
     
     if (!menuBtn || !nav) return;
 
+    this.setupMobileMenuAnimation(menuBtn, nav);
+    this.setupMobileMenuEvents(menuBtn, nav);
+  }
+
+  setupMobileMenuAnimation(menuBtn, nav) {
+    // Create animated hamburger
+    menuBtn.innerHTML = `
+      <span class="hamburger-line line-1"></span>
+      <span class="hamburger-line line-2"></span>
+      <span class="hamburger-line line-3"></span>
+    `;
+
+    // Style the menu for animation
+    nav.style.cssText += `
+      transform: translateX(100%);
+      transition: transform 0.6s ${this.config.easing.elastic};
+      will-change: transform;
+    `;
+  }
+
+  setupMobileMenuEvents(menuBtn, nav) {
     menuBtn.addEventListener('click', () => this.toggleMobileMenu(menuBtn, nav));
     
-    // Close menu when clicking nav links
-    nav.querySelectorAll('a').forEach(link => {
+    // Animate menu items
+    nav.querySelectorAll('a').forEach((link, index) => {
       link.addEventListener('click', () => this.closeMobileMenu(menuBtn, nav));
+      link.style.transitionDelay = `${index * 100}ms`;
     });
 
-    // Close menu when clicking outside
+    // Close on outside click
     document.addEventListener('click', (event) => {
       if (!menuBtn.contains(event.target) && !nav.contains(event.target)) {
         this.closeMobileMenu(menuBtn, nav);
@@ -237,40 +499,142 @@ class RabbBusinessesApp {
   openMobileMenu(menuBtn, nav) {
     nav.classList.add('active');
     menuBtn.classList.add('active');
-    this.toggleMenuIcon(menuBtn, 'fa-bars', 'fa-times');
-    document.body.style.overflow = 'hidden'; // Prevent scroll
+    nav.style.transform = 'translateX(0)';
+    
+    // Animate hamburger to X
+    this.animateHamburger(menuBtn, true);
+    
+    // Animate menu items
+    this.animateMenuItems(nav, true);
+    
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
   }
 
   closeMobileMenu(menuBtn, nav) {
     nav.classList.remove('active');
     menuBtn.classList.remove('active');
-    this.toggleMenuIcon(menuBtn, 'fa-times', 'fa-bars');
+    nav.style.transform = 'translateX(100%)';
+    
+    // Animate X to hamburger
+    this.animateHamburger(menuBtn, false);
+    
+    // Animate menu items
+    this.animateMenuItems(nav, false);
+    
+    // Restore body scroll
     document.body.style.overflow = '';
   }
 
-  toggleMenuIcon(menuBtn, fromClass, toClass) {
-    const icon = menuBtn.querySelector('i');
-    if (icon?.classList.contains(fromClass)) {
-      icon.classList.replace(fromClass, toClass);
+  animateHamburger(menuBtn, toX) {
+    const lines = menuBtn.querySelectorAll('.hamburger-line');
+    
+    if (toX) {
+      lines[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+      lines[1].style.opacity = '0';
+      lines[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+    } else {
+      lines[0].style.transform = 'none';
+      lines[1].style.opacity = '1';
+      lines[2].style.transform = 'none';
     }
   }
 
+  animateMenuItems(nav, show) {
+    const items = nav.querySelectorAll('a');
+    
+    items.forEach((item, index) => {
+      setTimeout(() => {
+        if (show) {
+          item.style.transform = 'translateX(0)';
+          item.style.opacity = '1';
+        } else {
+          item.style.transform = 'translateX(50px)';
+          item.style.opacity = '0';
+        }
+      }, index * 50);
+    });
+  }
+
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // 🎭 HERO SLIDESHOW
+  // 🎭 CINEMATIC HERO SLIDESHOW
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  initHeroSlideshow() {
+  async initHeroSlideshow() {
     const slides = document.querySelectorAll(this.selectors.heroSlides);
     if (slides.length === 0) return;
 
     this.slides = slides;
+    this.setupSlideshowContainer();
     this.setupSlideshow();
-    this.setupKeyboardNavigation();
+    this.setupSlideControls();
+  }
+
+  setupSlideshowContainer() {
+    const container = this.slides[0].parentElement;
+    container.style.cssText += `
+      position: relative;
+      overflow: hidden;
+    `;
+
+    // Add slide indicators
+    this.createSlideIndicators(container);
+  }
+
+  createSlideIndicators(container) {
+    const indicators = document.createElement('div');
+    indicators.className = 'slide-indicators';
+    indicators.style.cssText = `
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    `;
+
+    this.slides.forEach((_, index) => {
+      const indicator = document.createElement('button');
+      indicator.className = 'slide-indicator';
+      indicator.style.cssText = `
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      `;
+      
+      indicator.addEventListener('click', () => this.goToSlide(index));
+      indicators.appendChild(indicator);
+    });
+
+    container.appendChild(indicators);
+    this.slideIndicators = indicators.querySelectorAll('.slide-indicator');
   }
 
   setupSlideshow() {
-    this.showSlide(0);
-    
+    this.slides.forEach((slide, index) => {
+      slide.style.cssText += `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: ${index === 0 ? 1 : 0};
+        transform: ${index === 0 ? 'scale(1)' : 'scale(1.1)'};
+        transition: all 1.2s ${this.config.easing.smooth};
+        will-change: transform, opacity;
+      `;
+    });
+
+    this.updateSlideIndicators();
+    this.startSlideshow();
+  }
+
+  startSlideshow() {
     const interval = setInterval(() => {
       this.nextSlide();
     }, this.config.slideInterval);
@@ -278,57 +642,69 @@ class RabbBusinessesApp {
     this.intervals.set('slideshow', interval);
   }
 
-  showSlide(index) {
-    this.slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index);
-      slide.setAttribute('aria-hidden', i !== index);
-    });
-    
+  goToSlide(index) {
+    if (index === this.state.currentSlide) return;
+
+    const currentSlide = this.slides[this.state.currentSlide];
+    const nextSlide = this.slides[index];
+
+    // Animate out current slide
+    currentSlide.style.opacity = '0';
+    currentSlide.style.transform = 'scale(0.9)';
+
+    // Animate in next slide
+    setTimeout(() => {
+      nextSlide.style.opacity = '1';
+      nextSlide.style.transform = 'scale(1)';
+    }, 200);
+
     this.state.currentSlide = index;
+    this.updateSlideIndicators();
   }
 
   nextSlide() {
     const nextIndex = (this.state.currentSlide + 1) % this.slides.length;
-    this.showSlide(nextIndex);
+    this.goToSlide(nextIndex);
   }
 
-  prevSlide() {
-    const prevIndex = this.state.currentSlide === 0 
-      ? this.slides.length - 1 
-      : this.state.currentSlide - 1;
-    this.showSlide(prevIndex);
-  }
-
-  setupKeyboardNavigation() {
-    document.addEventListener('keydown', (event) => {
-      if (event.target.matches('input, textarea')) return;
-      
-      switch (event.key) {
-        case 'ArrowLeft':
-          this.prevSlide();
-          break;
-        case 'ArrowRight':
-          this.nextSlide();
-          break;
-      }
+  updateSlideIndicators() {
+    this.slideIndicators?.forEach((indicator, index) => {
+      const isActive = index === this.state.currentSlide;
+      indicator.style.background = isActive ? 'rgba(255, 255, 255, 0.9)' : 'transparent';
+      indicator.style.transform = isActive ? 'scale(1.2)' : 'scale(1)';
     });
   }
 
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // 💬 TESTIMONIAL SLIDER
+  // 💬 DYNAMIC TESTIMONIAL SLIDER
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  initTestimonialSlider() {
+  async initTestimonialSlider() {
     const testimonials = document.querySelectorAll(this.selectors.testimonials);
     if (testimonials.length === 0) return;
 
     this.testimonials = testimonials;
+    this.setupTestimonialContainer();
     this.setupTestimonialSlider();
-    this.setupTestimonialControls();
+  }
+
+  setupTestimonialContainer() {
+    this.testimonials.forEach((testimonial, index) => {
+      testimonial.style.cssText += `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: ${index === 0 ? 1 : 0};
+        transform: ${index === 0 ? 'translateX(0) scale(1)' : 'translateX(100%) scale(0.8)'};
+        transition: all 0.8s ${this.config.easing.elastic};
+        will-change: transform, opacity;
+      `;
+    });
   }
 
   setupTestimonialSlider() {
-    this.showTestimonial(0);
+    this.updateTestimonial(0);
     
     const interval = setInterval(() => {
       this.nextTestimonial();
@@ -337,9 +713,21 @@ class RabbBusinessesApp {
     this.intervals.set('testimonials', interval);
   }
 
-  showTestimonial(index) {
+  updateTestimonial(index) {
     this.testimonials.forEach((testimonial, i) => {
-      testimonial.classList.toggle('active', i === index);
+      if (i === index) {
+        testimonial.style.opacity = '1';
+        testimonial.style.transform = 'translateX(0) scale(1)';
+        testimonial.style.zIndex = '2';
+      } else if (i < index) {
+        testimonial.style.opacity = '0';
+        testimonial.style.transform = 'translateX(-100%) scale(0.8)';
+        testimonial.style.zIndex = '1';
+      } else {
+        testimonial.style.opacity = '0';
+        testimonial.style.transform = 'translateX(100%) scale(0.8)';
+        testimonial.style.zIndex = '1';
+      }
     });
     
     this.state.currentTestimonial = index;
@@ -347,22 +735,7 @@ class RabbBusinessesApp {
 
   nextTestimonial() {
     const nextIndex = (this.state.currentTestimonial + 1) % this.testimonials.length;
-    this.showTestimonial(nextIndex);
-  }
-
-  prevTestimonial() {
-    const prevIndex = this.state.currentTestimonial === 0 
-      ? this.testimonials.length - 1 
-      : this.state.currentTestimonial - 1;
-    this.showTestimonial(prevIndex);
-  }
-
-  setupTestimonialControls() {
-    const prevBtn = document.querySelector('.testimonial-slider .prev');
-    const nextBtn = document.querySelector('.testimonial-slider .next');
-
-    prevBtn?.addEventListener('click', () => this.prevTestimonial());
-    nextBtn?.addEventListener('click', () => this.nextTestimonial());
+    this.updateTestimonial(nextIndex);
   }
 
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
