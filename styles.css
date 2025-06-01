@@ -42,7 +42,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: var(--white);
-    background: linear-gradient(135deg, var(--black) 0%, var(--dark-navy) 50%, var(--navy-blue) 100%);
+    background: white   
     overflow-x: hidden;
 }
 
@@ -81,7 +81,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.95);
+    background: rgba(74, 72, 72, 0.95);
     backdrop-filter: blur(10px);
     z-index: 1000;
     padding: 1rem 0;
@@ -173,6 +173,7 @@ nav a:hover {
     color: var(--primary-gold);
     transform: translateY(-2px);
 }
+
 
 /* ===== HERO SECTION ===== */
 .hero {

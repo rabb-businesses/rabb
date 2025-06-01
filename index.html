@@ -11,27 +11,43 @@
 </head>
 <body>
 <!-- Header Section -->
-<header>
+<header class="header">
     <div class="container">
-        <div class="logo">
-            <img src="images/logo.jpeg" alt="Rabb Businesses Logo">
-            <h1>Rabb Businesses</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#team">Team</a></li>  <!-- Added Team link -->
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#careers">Careers</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="mobile-menu">
+        <div class="header-inner">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.jpeg" alt="Rabb Businesses Logo">
+                    <h1>Rabb Businesses</h1>
+                </a>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li class="dropdown">
+                        <a href="#services" class="dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="management-consultancy.html">Management Consultancy in UAE</a></li>
+                            <li><a href="marketing-consultancy.html">Marketing Consultancy in UAE</a></li>
+                            <li><a href="hr-consultancy.html">HR Consultancy in UAE</a></li>
+                            <li><a href="ecommerce-consultancy.html">E-commerce Consultancy in UAE</a></li>
+                            <li><a href="quality-consultancy.html">Quality Measurement Management Consultancy in UAE</a></li>
+                            <li><a href="hospitality-consultancy.html">Hospitality Consultancy Dubai</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="mobile-menu-toggle">
                 <i class="fas fa-bars"></i>
             </div>
-        </nav>
+        </div>
     </div>
 </header>
 <!-- Hero Section -->
@@ -216,7 +232,7 @@
         </div>
     </div>
 </section>
-<!-- Services Section -->
+<!-- Updated Services Section with Mobile Responsiveness -->
 <section id="services" class="services">
     <div class="container">
         <h2>Our Services</h2>
@@ -228,7 +244,7 @@
                     <img src="images/quality.jpg" alt="Business Management Consultancy">
                 </div>
                 <div class="service-content">
-                    <h3>Business Management Consultancy</h3>
+                    <h3>Management Consultancy in UAE</h3>
                     <p>Strategic planning, operational optimization, and performance improvement to drive sustainable growth.</p>
                     <a href="management-consultancy.html" class="btn-small">Learn More</a>
                 </div>
@@ -239,7 +255,7 @@
                     <img src="images/marketing.jpg" alt="Marketing Management Consultancy">
                 </div>
                 <div class="service-content">
-                    <h3>Marketing Management Consultancy</h3>
+                    <h3>Marketing Consultancy in UAE</h3>
                     <p>Data-driven marketing strategies, campaign management, and brand positioning to maximize your market reach.</p>
                     <a href="marketing-consultancy.html" class="btn-small">Learn More</a>
                 </div>
@@ -250,7 +266,7 @@
                     <img src="images/hr.jpg" alt="Human Resource Management Consultancy">
                 </div>
                 <div class="service-content">
-                    <h3>Human Resource Management Consultancy</h3>
+                    <h3>HR Consultancy in UAE</h3>
                     <p>Talent acquisition, HR policy development, training, and compliance support to build high-performing teams.</p>
                     <a href="hr-consultancy.html" class="btn-small">Learn More</a>
                 </div>
@@ -261,7 +277,7 @@
                     <img src="images/ecommerce.jpg" alt="E-commerce Management Consultancy">
                 </div>
                 <div class="service-content">
-                    <h3>E-commerce Management Consultancy</h3>
+                    <h3>E-commerce Consultancy in UAE</h3>
                     <p>End-to-end e-commerce solutions, from platform setup to digital marketing and logistics integration.</p>
                     <a href="ecommerce-consultancy.html" class="btn-small">Learn More</a>
                 </div>
@@ -272,7 +288,7 @@
                     <img src="images/quality.jpeg" alt="Quality Measurement Management Consultancy">
                 </div>
                 <div class="service-content">
-                    <h3>Quality Measurement Management Consultancy</h3>
+                    <h3>Quality Measurement Management Consultancy in UAE</h3>
                     <p>Implementation of quality systems, KPI dashboards, and audit support to ensure operational excellence.</p>
                     <a href="quality-consultancy.html" class="btn-small">Learn More</a>
                 </div>
@@ -283,7 +299,7 @@
                     <img src="images/hospi.jpeg" alt="Hospitality Management Consultancy">
                 </div>
                 <div class="service-content">
-                    <h3>Hospitality Management Consultancy</h3>
+                    <h3>Hospitality Consultancy Dubai</h3>
                     <p>Implementing quality systems, KPI dashboards, and audit support to elevate hospitality operations and ensure excellence.</p>
                     <a href="hospitality-consultancy.html" class="btn-small">Learn More</a>
                 </div>
