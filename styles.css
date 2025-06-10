@@ -38,8 +38,9 @@
     background: linear-gradient(45deg, var(--dark-gold), var(--primary-gold));
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+body[dir="rtl"]{
+    text-align: right;
+  font-family: 'Tahoma', 'Cairo', sans-serif;
     line-height: 1.6;
     color: var(--white);
     background: white   
